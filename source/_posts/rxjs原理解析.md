@@ -11,19 +11,21 @@ tag:
 
 [原文地址(english, 需翻墙)](https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87)
 
-#通过构造一个Observable来学习Observable
-在很多场合下，我经常被咨询的问题大都是关于"hot" 和 "cold"observables的区别，或者是一个observable是单播还是多播的问题。人们对于’Rx.Observable‘的内部工作原理似乎是非常迷惑的。当被问到如何描述一个observable的时候，人们经常说的就是这样的， “他是流（streams）”或者是“他是个类似promises的东西”。但事实上，我在很多场合以及一些公开演讲上都有讲过这些东西。和promise的比较是有必要的，但不幸的是。这两者都是异步原语，并且promises已经被js社区广泛接受和使用了，总体来说这是个好的开始。通过对比promise的‘then’和observable的’subscribe‘,我们可以看到两者在立即执行和延时执行的区别，还可以看到observable的取消执行和可重用性，当然还有其他很多。通过这种比较的方式学习对于observable的初学者来说是很容易接受的。但是这里有一个问题：就是这两者的不同之处远远大于类似之处。Promises都是多播的，Promise的resolve和reject都是异步的。当大家以处理promise的方式处理observables的时候，大家会发现有时候结果并不像预期的那样。Observables有时候是多播的，通常是异步的。有时候我也会责备自己，因为我使这种误解被延续了。
+
+# 通过构造一个Observable来学习Observable
+很多时候大家都在问我"hot" 和 "cold" observables的区别到底是啥？，或者是一个observable到底是单播还是多播？。人们对于’Rx.Observable‘的内部工作原理似乎是非常迷惑的。当被问到如何描述一个observable的时候，人们经常说的就是这样的， “他是流（streams）”或者是“他是个类似promises的东西”。但事实上，我在很多场合以及一些公开演讲上都有讲过这些东西。
+
+和promise作比较比较是有必要的，但不幸的是，恐怕不会有太大的用处。这两者都是异步原语，并且promises已经被js社区广泛接受和使用了，总体来说这是个好的开始。通过对比promise的‘then’和observable的’subscribe‘,我们可以看到两者在立即执行和延时执行上的区别，还可以看到observable的取消执行和可重用性，当然还有其他很多的东西。通过这种比较的方式学习对于observable的初学者来说是很容易接受的。但是这里有一个问题：就是这两者的不同之处远远大于类似之处。Promises都是多播的，Promise的resolve和reject都是异步的。当大家以处理promise的方式处理observables的时候，大家会发现有时候结果并不像预期的那样。Observables有时候是多播的，有时候又不是，并且通常是异步的。真的，有时候我也在责备自己，因为我有可能再使这种误解被延续。
 
 # Observable仅仅是一个函数，他接受一个observer 并且返回一个函数
-若果你想彻底搞懂observable，你可以自己实现一个简单的。真的，这并没有听起来那么难。对于一个observable, 当我们去观察他的最小实现时会发现他只是一个拥有特定（specific,具体，指定，特定）目的函数，而这个函数又有自己特定的类型。（就是一个具有特定目的的特定类型的函数）
+若果你想彻底搞懂observable，你可以自己实现一个简单的observable。真的，这并没有听起来那么难。对于一个observable, 当我们去观察他的最小实现时会发现他只是一个拥有特定（specific,具体，指定，特定）目的的函数，而这个函数又有自己特定的类型。（就是一个具有特定目的的特定类型的函数）
 1. 结构
     * 函数
     * 接受一个observer(观察者): 一个拥有next, error 以及complete方法的对象
     * 返回一个可取消执行的函数
 2. 目的：
     连接一个observer到生产者(产生value的对象)，并且返回一个能够
-    取消连接生产者的方法。实际上observer就是一个可以随时传入数据的
-    的监听器句柄（handler处理函数）
+    取消连接生产者的方法。实际上observer就是一个可以随时传入数据的的监听器处理函数（handler处理函数）
 3. 基础实现：
 ```
 /**
@@ -78,14 +80,13 @@ const unsub = myObservable({
 
 [你可以在jsbin上尝试一下](http://jsbin.com/yazedu/1/edit?js,console,output)
 
-正如你看到的一样，他并不复杂，他只是一个简单契约
+正如你看到的一样，他并不复杂，他只是一个简单的契约
 
 
 # 安全的Observers: 优化我们的Observers
-当我们谈论Rxjs或者响应式编程的时候，我们大部分时间把observables放在首位，但实时上observer的实现才是这类响应式编程的核心工作者(workhorse驮马驮东西的马)。Observables是惰性的（inert）他们仅仅是函数，他们就在那里不动一直到你’订阅‘他们，’订阅‘后他就会建立你的obserer(就是把observer与producer连接在一起)，至此他们的活就干完了，然后就就又变回了原始的状态等着被调用另一方面observers则是保持在活跃状态，监听着producer的事件。
+当我们谈论Rxjs或者响应式编程的时候，我们大部分时间把observables放在首位，但事实上observer的实现才是这类响应式编程的核心工作者(workhorse驮马驮东西的马)。Observables是惰性的（inert）他们仅仅是函数，他们就在那里不动一直到你’订阅‘他们，’订阅‘后他就会建立你的observer(就是把observer与producer连接在一起)，至此他们的活就干完了，然后就又变回了原始的状态等着被其他人再次调用, 另一方面observers则是保持在活跃状态，监听着producer的事件。
 
-你可以用一个带有’next‘, 'error'以及’complete‘等方法的js 对象来订阅observable但实际上这仅仅是个开始。在rxjs5我们提供了一些保证，下面是一些非常
-重要的保证：
+你可以用一个带有’next‘, 'error'以及’complete‘等方法的js 对象来订阅observable，但实际上这仅仅是个开始。在rxjs5我们提供了一些保证，下面是一些非常重要的保证：
 
 # Observer 保证
 1. 若果你传入的oberser没有实现所有的方法，这也是可以的
@@ -222,7 +223,7 @@ const unsub = myObservable({
 
 # Observable的设计: 符合人体工程学的 Observer 安全性
 
-若是我们把observables封装成一个class或者 一个对象，那么我们就可以很方便的把SafeObserver当做匿名的obserers传入（或者是函数就好像rxjs里的签名似的`subscribe(fn, fn, fn)`）并且以更好的符合人体工程学的方式提供给开发者。通过在Observable的’subsccribe‘中把SafeObserver以内在的形式创建， Observables 又可以以一种简单的方式来使用了：
+若是我们把observables封装成一个class或者 一个对象，那么我们就可以很方便的把SafeObserver当做匿名的obserers传入（或者是函数就好像rxjs里的签名似的`subscribe(fn, fn, fn)`）并且以更好的符合人体工程学的方式提供给开发者。通过在Observable的’subscribe‘中把SafeObserver以内在的形式创建， Observables 又可以以一种简单的方式来使用了：
 ```
 const myObservable = new Observable((observer) => {
     const datasource = new DataSource();
@@ -281,7 +282,7 @@ pipe(myObservable, map(x => x + 1), map(x => x + 2));
 
 ```
 
-理想情况下，我们希望能够使用如下的方式链式调用
+理想情况下，我们希望能够使用如下的方式进行链式调用
 ```
 myObservable.map(x => x + 1).map(x => x + 2);
 ```
