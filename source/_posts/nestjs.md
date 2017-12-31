@@ -99,7 +99,9 @@ tag:
   }
   */
   ```
+
     expecptions的体系是可以扩展的，当然nest还提供很多的类型，如BadRequestExceptio, UnauthorizedExceptio等等
+
   ```
   export class ForbiddenException extends HttpException {
     constructor() {
@@ -107,7 +109,9 @@ tag:
     }
   }
   ```
+
     @Filter的正式称呼应当是Exception Filters。这次望文生义是正确的。是的就是处理Exception的。
+
   ```
   @Catch(HttpException)
   export class HttpExceptionFilter implements ExceptionFilter {
@@ -137,29 +141,11 @@ tag:
   }
   bootstrap(); 
   ```
-  * @Pipe
-  使用来处理参数校验以及参数类型转换的,当然nest也提供了很多的内置pipe,
-  参数解释一下，可能不太好看，value,是传进来的值，ArgumentMetadata的属性包含： type: 参数通过什么方式传进来的（body, query, param等等），metatype: 传进来的参数是啥类型，string, number .etc, data: 这个没搞太明白文档上说的是‘The string passed to the decorator, for example  @Body('string')’还没参悟处来。。。
-
-  ![](https://docs.nestjs.com/assets/Pipe_1.png)
-  ```
-  @Pipe()
-  export class ValidationPipe implements PipeTransform<any> {
-    transform(value: any, metadata: ArgumentMetadata) {
-      return value;
-    }
-  }
-  // 使用
-  @Post()
-  // @UsePipes(new ValidationPipe())
-  async create(@Body(new ValidationPipe()) createCatDto: CreateCatDto) {
-    this.catsService.create(createCatDto);
-  }
-  ``` 
   * @Guards
-    用来决定请求是否要被handler处理，典型就是权限判断
+  用来决定请求是否要被handler处理，典型就是权限判断
 
   ![](https://docs.nestjs.com/assets/Guards_1.png)
+
   ```
   @Guard()
   export class RolesGuard implements CanActivate {
@@ -172,7 +158,9 @@ tag:
   @UseGuards(RolesGuard)
   export class CatsController {}
   ```
+
   我们可以自定义一些装饰器，给controller添加必要属性以供guard来使用
+
   ```
   // roles Deacator
   export const Roles = (...roles: string[]) => ReflectMetadata('roles', roles);
@@ -182,8 +170,8 @@ tag:
   async create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
-  // Roles guards 改写
 
+  // Roles guards 改写
   @Guard()
   export class RolesGuard implements CanActivate {
     constructor(private readonly reflector: Reflector) {}
@@ -202,6 +190,25 @@ tag:
   }
   // 使用同上
   ```
+  * @Pipe
+  使用来处理参数校验以及参数类型转换的,当然nest也提供了很多的内置pipe,
+  参数解释一下，可能不太好看，value,是传进来的值，ArgumentMetadata的属性包含： type: 参数通过什么方式传进来的（body, query, param等等），metatype: 传进来的参数是啥类型，string, number .etc, data: 这个没搞太明白文档上说的是‘The string passed to the decorator, for example  @Body('string')’还没参悟处来。。。
+
+  ![](https://docs.nestjs.com/assets/Pipe_1.png)
+  ```
+  @Pipe()
+  export class ValidationPipe implements PipeTransform<any> {
+    transform(value: any, metadata: ArgumentMetadata) {
+      return value;
+    }
+  }
+  // 使用
+  @Post()
+  // @UsePipes(new ValidationPipe())
+  async create(@Body(new ValidationPipe()) createCatDto: CreateCatDto) {
+    this.catsService.create(createCatDto);
+  }
+  ```
   * @Interceptor
   按照文档的说法就是受到AOP（面向切面编程）编程方式的启发。
   1. 在方法执行前后增加额外的逻辑(类似于koa中中间件的执行方式)
@@ -213,7 +220,24 @@ tag:
   * 可以自定义装饰器，在guard里面我们已经见到过了。
 
   * nest还集成了[graphql](https://docs.nestjs.com/graphql/quick-start), [websockets](https://docs.nestjs.com/websockets/gateways), [microservice](https://docs.nestjs.com/microservices/basics), 微服务这部分他提供两种通信方式，redis(pub/sub), tcp等等
+### 目录结构
 
+```
+  app
+    -- modules
+      -- reports
+        -- report.controller.ts
+        -- report.service.ts
+        -- report.entity.ts
+        -- report.interface.ts
+        -- dto(data transfer object)
+          -- report.dto.ts(推荐class)
+      -- orders
+        ...
+    -- common
+      -- db.provice.ts
+      ...
+```
 ### 实践一把
 1. git clone https://github.com/nestjs/typescript-starter
 2. npm install 
