@@ -490,3 +490,9 @@ func main()  {
 ### map使用range遍历顺序问题，并不是录入的顺序，而是随机顺序
 
 ### append函数返回更新后的slice（长度和容量可能会变），必须重新用slice的变量接收，不然无法编译通过
+
+### golang channel和一个goroutine组合起来就是一个web-worker的模式，只是我们在js里管理的是web-worker的句柄，而在golang 里面我们要管理的是channel,这里golang的一个优势是我可以把多个channel和一个goroutine绑定，而web-worker一个句柄就对应这个一个web-worker是不可能多对一的。
+
+### golang channel的使用方式两种
+1. 调用者生成传递个goroutine。
+2. 被调用者生成返回给调用者。
