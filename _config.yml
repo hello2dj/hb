@@ -74,8 +74,8 @@ pagination_dir: page
 insight: true
 lightgallery: true
 ## Themes: https://hexo.io/themes/
-# theme: landscape
-theme: Hueman
+# theme: material
+theme: material
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
