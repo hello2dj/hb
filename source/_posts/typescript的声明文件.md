@@ -122,6 +122,21 @@ npm install --save-dev @types/node(package-name)
 
 当然这里仅仅是简单的做了介绍，通过这个简单的介绍我们可以发现，当我们把声明文件写的完整的时候，基本就是 ts 出师的时候了。(举的栗子是两种分开的，那么在我的 node 项目的某个文件中既有 global 形式又有包的导出形式该怎么做呢？我还没写对，有待努力！各位看官要是知道的话忘不吝赐教（dj_amazing@sina.com）)
 
+### 在声明文件中 export **
+* 和declare的差不多，import {export的， declare的 } from ''; 都可以被导出， 但是若是使用了 export = something, 那么就只有somethine会被导出了
+### declare namespace看做是内部模
+块即可，不可作为类型，以及值，只是用来分隔代码
+
+### conditional type 中可以使用 infer 关键字，常规的类型定义中不能使用
+推到出 函数返回值类型
+```
+type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
+```
+
+普通类型定义 使用infer会报错
+```
+type ReturnType<T extends (...args: any[]) => infer R> = R;  // Error, not supported
+```
 参考：
 
 1.  [handbook](https://www.typescriptlang.org/docs/handbook/basic-types.html)
