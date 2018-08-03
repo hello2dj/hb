@@ -8,6 +8,9 @@ tag:
 ![](http://rocksdb.org/static/logo.svg)
 
 今天看了几篇非常棒的文章，列出来与大家共享
+
+<!-- more -->
+
 [rocksdb与LSM-Tree](http://blog.mrriddler.com/2017/05/30/LSM-Tree%E4%B8%8ERocksDB/)
 
 [leveldb简介](https://soulmachine.gitbooks.io/system-design/content/cn/key-value-store.html)

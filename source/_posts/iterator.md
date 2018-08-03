@@ -11,6 +11,7 @@ tag:
 先上图
 ![](http://exploringjs.com/es6/images/iteration----consumers_sources.jpg)
 
+<!-- more -->
 
 先来普及一下
 [抽象漏洞wiki](https://zh.wikipedia.org/zh-hans/%E6%8A%BD%E8%B1%A1%E6%BC%8F%E6%B4%9E%E5%AE%9A%E5%BE%8B) 

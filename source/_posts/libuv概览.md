@@ -10,6 +10,7 @@ tag:
 
 ![](http://7xnyi3.dl1.z0.glb.clouddn.com/2017-07-10-libuv-libuv.png)
 
+<!-- more -->
 
 ### 设计概览
 libuv是一个跨平台的异步事件库。

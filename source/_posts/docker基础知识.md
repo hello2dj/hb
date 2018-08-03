@@ -8,6 +8,8 @@ tags:
 
 ## 解决docker sudo问题
 
+<!-- more -->
+
 ### 检查是否已有 docker 用户组
 
 ```

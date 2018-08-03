@@ -185,3 +185,12 @@ https://www.zhihu.com/question/68258877
 
 ## 重代码和重sql的两种编码方式
 https://zhuanlan.zhihu.com/p/36585028 
+
+
+1. 查询数据库存储使用大小
+```
+ SELECT pg_size_pretty(sum(pg_database_size(oid))::BIGINT)
+             FROM pg_database
+```
+
+https://www.prepressure.com/library/technology/raid

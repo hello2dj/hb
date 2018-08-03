@@ -75,7 +75,7 @@ insight: true
 lightgallery: true
 ## Themes: https://hexo.io/themes/
 # theme: material
-theme: material
+theme: Hacker
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

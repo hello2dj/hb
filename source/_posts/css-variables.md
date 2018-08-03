@@ -11,6 +11,8 @@ tags:
 
 > 本文是 CSS Variables 的第一章([作者的新书](https://gumroad.com/l/lwaUh))
 
+<!-- more -->
+
 大多数的语言都有变量，可是 css 里面是没有的（话说 css 是编程语言么？）
 
 但是像一些 css 预处理器如 sass 等都会提供对变量的支持

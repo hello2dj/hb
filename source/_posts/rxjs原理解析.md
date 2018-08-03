@@ -11,6 +11,8 @@ tag:
 
 [原文地址(english, 需翻墙)](https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87)
 
+<!-- more -->
+
 
 # 通过构造一个Observable来学习Observable
 很多时候大家都在问我"hot" 和 "cold" observables的区别到底是啥？，或者是一个observable到底是单播还是多播？。人们对于’Rx.Observable‘的内部工作原理似乎是非常迷惑的。当被问到如何描述一个observable的时候，人们经常说的就是这样的， “他是流（streams）”或者是“他是个类似promises的东西”。但事实上，我在很多场合以及一些公开演讲上都有讲过这些东西。

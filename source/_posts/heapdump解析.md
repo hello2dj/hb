@@ -8,6 +8,9 @@ tag:
 - web
 ---
 ### snapshot(v8)
+
+<!-- more-->
+
   * 既然要讲v8的snapshot那就得先看看snapshot的表示形式，整个snapshot里的对象是以graph的形式展示的，节点是对象(会以对象的构造函数的形式展示)，边是属性值, 例如
   ```
   class A {

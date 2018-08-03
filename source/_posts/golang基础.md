@@ -4,7 +4,10 @@ date: 2018-06-06
 tags:
 ---
 
+golang基础知识
 > 随时会更新
+
+<!-- more-->
 
 ### golang 的所有的都是 copy 赋值，=，传参，channel 发送等等都是。
 

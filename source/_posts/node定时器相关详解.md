@@ -11,6 +11,8 @@ tag:
 
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9leykiCi69dcz6PgtAdOLnqaQG934yIqpSitu_3YCoQ3eDxKpZQ)
 
+<!-- more -->
+
 ### 先来温习一下event loop中的几个phase可参见我的上篇文章[libuv概览](https://hello2dj.github.io/2018/01/10/libuv%E6%A6%82%E8%A7%88/)
   * timers: 这个phase是来检查定时器是否到期的，并执行的
   * poll(I/O): 这个是用来监听fd的事件的，比如socket的可读，可写，文件的可读可等

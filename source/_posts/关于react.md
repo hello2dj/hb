@@ -5,6 +5,8 @@ tags:
     - react
 ---
 
+<!-- more -->
+
 ### 什么 jsx
 
 Fundamentally, JSX just provides syntactic sugar for the React.createElement(component, props, ...children) function. The JSX code:

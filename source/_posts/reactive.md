@@ -11,6 +11,8 @@ tag:
 
 抱歉这次没有原文了！！！！
 
+<!-- more -->
+
 # 响应式编程
 ### 先来看看rxjs介绍的reactive programming
 |  | Producer | Consumer |

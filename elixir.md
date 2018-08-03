@@ -16,3 +16,7 @@
     1.  可以使用：代替=>
     2.  map 有自己的获取元素的方法 a.foo
     3.  map 有自己的更新方法 %{map | foo: "bz"}
+
+1. 可以有Map Module进行操作
+2. elixir中不可以有大写开头的变量，那都是Module
+

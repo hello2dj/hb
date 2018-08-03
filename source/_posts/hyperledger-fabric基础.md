@@ -5,6 +5,8 @@ tags:
     - fabric
 ---
 
+<!-- more -->
+
 ### [流程问题](http://rdcqii.hundsun.com/portal/article/661.html)
 
 ### [关于使用 kafka 实现共识](https://www.jianshu.com/p/f1a671be69a4)

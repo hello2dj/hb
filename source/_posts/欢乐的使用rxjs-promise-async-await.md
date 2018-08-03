@@ -10,6 +10,8 @@ tag:
 
 [原文地址(english, 需翻墙)](https://medium.com/@benlesh/rxjs-observable-interop-with-promises-and-async-await-bebb05306875)
 
+<!-- more -->
+
 ### Rxjs observable和promise以及Async-Await的互相操作
 无论何时我都会被问到一个问题那就是如何再使用rxjs的时候使用promise和async和await呢？或者什么时候不能混合使用？我也说过几个不要同时使用的栗子。rxjs从一开始就可以很好的和promise一起使用。希望这篇文章能够很好的阐述一下。
 

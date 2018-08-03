@@ -7,6 +7,9 @@ tag:
 > [原文地址](https://morsmachine.dk/error-handling)
 
 ![](https://ideassea.com/content/images/2017/07/golang-error-handling-1-1.jpg)
+
+<!-- more -->
+
 #### 简介
 golang 的错误处理方式一直是他遭受抨击的一个原因之一。探查每一个的错误然后处理确实是一个艰巨的任务，这里有几招可以让你减少错误的处理方式（处理错误的方法）。
 

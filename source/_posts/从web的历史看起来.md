@@ -9,6 +9,9 @@ tag:
 
 ![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517319556099&di=9a896e93fd40371a629ae7b86da01a13&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fbaike%2Fw%253D268%2Fsign%3D2da2b172510fd9f9a017526f1d2cd42b%2Fcaef76094b36acafe88708f27cd98d1000e93901213fbc65.jpg)
 
+
+<!-- more -->
+
 题目有些大，我肯定cover不住，只是最近了有这么个想法，看看能不能梳理一下。
 
 其中多是猜测臆想，见识浅陋还请担当。接下来带领大家看看当年的牛人是有多凶残！！

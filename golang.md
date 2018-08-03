@@ -1042,3 +1042,6 @@ time.Sleep(time.Second * 100000000000000)
 
 
 ### golang 面试题 https://zhuanlan.zhihu.com/p/35058068 
+
+### (golang的奇葩1)[https://juejin.im/post/5b5bd2ddf265da0f716c2fea?utm_source=gold_browser_extension]
+### (golang奇葩2)[https://mp.weixin.qq.com/s/gjOTdEVyhHAiG4nK_ZrOVw]

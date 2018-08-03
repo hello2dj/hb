@@ -7,6 +7,8 @@ tag:
 
 {% asset_img ts.png 开篇一图 %}
 
+<!-- more -->
+
 ### 开篇扯淡
 
 上次我们谈论协变和逆变时提到了 typescript, ts 本身是 js 的超集，从名字就可以看出来 ts 为 js 带来了类型，那么如何能写好 typescript？答案是从声明文件开始，若是能写的一手好的 ts 的声明文件，那 ts 的书写必然是手到擒来啊！2333333（我们就不在这里再做 ts 的基本语法的普及了详见[handbook](https://www.typescriptlang.org/docs/handbook/basic-types.html)）

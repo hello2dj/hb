@@ -6,6 +6,9 @@ tags:
 ---
 
 ### go maps 实践
+
+<!-- more-->
+
 * 简介
 在cs中hash table是一种经常使用的数据结构。许多hash table的实现都拥有很多的属性。但总的来说，他们都会提供快速查询，添加以及删除等功能。go 提供了一个内置的实现了hash table的map 类型。
 

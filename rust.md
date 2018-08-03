@@ -5,6 +5,16 @@ tag:
 - rust-lang
 ---
 
+### rust中的变量是 某块内存的名字， mut 标志的是名字对应的内存区域是否可变
+```
+let mut x = 123;
+let mut y = &mut x;
+
+// &mut x中的mut标志的是x对应的内存区域是否可变，mut y 标志的是 y对应的内存区域是否可变，y的内存区域存储的是x对应内存的地址
+```
+
+### rust enum 是不可以使用 == 进行比较的， 其他比较也是不可以的
+
 ### rust的所有权问题当一个结构体中的一个字段move出去以后那么整个结构体就不能再使用了，但是，内部字段还可以继续使用
 ```
 #[derive(Debug)]
@@ -292,3 +302,7 @@ fn main() {
 
 ### Box<T>类型和其他结构体类型不同，其他结构体其中字段被move出去以后，那么整个结构体不可再move但是其中的其他字段还是可以继续使用，Box则不同，一个字段被move以后其他字段也不能使用了。
 原因是 Box是分配在堆上的空间，若是分别move，会造成堆空间的重复释放，而struct的栈上空间就不存在这个问题
+
+
+###
+https://stackoverflow.com/questions/35592750/how-does-for-syntax-differ-from-a-regular-lifetime-bound

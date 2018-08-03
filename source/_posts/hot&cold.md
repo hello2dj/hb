@@ -13,6 +13,8 @@ tag:
 
 # TL;DR: 当你不想一次又一次的创建你的producer时，你需要一个HOT observable
 
+<!-- more-->
+
 ### COLD 就是你的Observable创建了生产者（就是当你创建observable时创建producer）
 ```
 // COLD

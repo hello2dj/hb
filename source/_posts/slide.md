@@ -6,6 +6,8 @@ tag:
 - web
 ---
 
+<!-- more -->
+
 {% asset_img slide.png 我的第一幅画 %}
 
 > 画画有点儿难啊！

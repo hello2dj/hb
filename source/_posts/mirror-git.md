@@ -7,6 +7,8 @@ tags:
 
 #### 镜像代码库的方法
 
+<!-- more -->
+
 我希望这篇文章能够清晰的描述一下如何镜像 git 仓库---即我有一个 github 仓库 example.git, 还有一个 sourceforge 仓库 example.git, 我希望这两个仓库的代码可以镜像同步，就是我无论更新哪一个都会同步到另一个仓库上去。
 
 ##### 建立一个本地的仓库，并且设置 upstream(就是添加 remote)。重点：这得是个 bare 仓库
