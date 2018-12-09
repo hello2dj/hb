@@ -1045,3 +1045,87 @@ time.Sleep(time.Second * 100000000000000)
 
 ### (golang的奇葩1)[https://juejin.im/post/5b5bd2ddf265da0f716c2fea?utm_source=gold_browser_extension]
 ### (golang奇葩2)[https://mp.weixin.qq.com/s/gjOTdEVyhHAiG4nK_ZrOVw]
+
+### channel 必须使用make初始化
+
+### PS在Tx中唯一绑定一个连接，不会re-prepare。
+
+Tx和statement不能分离，在DB中创建的statement也不能在Tx中使用，因为他们必定不是使用同一个连接使用Tx必须十分小心，例如下面的代码：
+```
+tx, err := db.Begin()
+if err != nil {
+    log.Fatal(err)
+}
+defer tx.Rollback()
+stmt, err := tx.Prepare("INSERT INTO foo VALUES (?)")
+if err != nil {
+    log.Fatal(err)
+}
+defer stmt.Close() // danger!
+for i := 0; i < 10; i++ {
+    _, err = stmt.Exec(i)
+    if err != nil {
+        log.Fatal(err)
+    }
+}
+err = tx.Commit()
+if err != nil {
+    log.Fatal(err)
+}
+// stmt.Close() runs here!
+```
+*sql.Tx一旦释放，连接就回到连接池中，这里stmt在关闭时就无法找到连接。所以必须在Tx commit或rollback之前关闭statement。
+
+> 当使用tx时所有的操作必须在commit或者rollback之前关闭
+
+
+### tcp 设置超时时间
+
+https://github.com/developer-learning/night-reading-go/blob/master/discuss/2018-06-07-dial-timeout-in-go.md
+
+
+### 你需要知道的知识点有两个，一是go的参数都是值传递，二是只有用同一把锁才能对某个资源边界进行锁与解锁的操作。
+
+```
+type ExecuterList struct {
+	sync.Map
+	length int
+}
+
+func (e ExecuterList) Get(key string) IExecuter {
+	value, ok := e.Load(key)
+	if !ok {
+		return nil
+	}
+	if value == nil {
+		return nil
+	}
+	res, _ := value.(IExecuter)
+	return res
+}
+```
+使用 go tool vet ，出现“Get passes lock by value: ExecuterList contains sync.Map contains sync.Mutex”， 解决方案有两种：
+
+1，sync.Map用指针
+```
+type X struct {
+	*sync.Map
+}
+```
+2， 也可以用 (e *ExecutorList) ,避免锁的复制。
+
+### context.withCancel http://www.zenlife.tk/with-cancel.md
+
+### go 为什么会有nil channel https://lingchao.xin/post/why-are-there-nil-channels-in-go.html
+
+
+### 当我们需要确保某一个类型实现了某一固定接口时可以在代码顶部这么写
+```
+var _ HelloServiceInterface = (*HelloServiceClient)(nil) // 确保 HelloServiceClient 实现了 HelloServiceInterface
+```
+不用但声明，若没有实现编译时就会报错
+
+
+### copy内置的copy https://golang.org/ref/spec#Appending_and_copying_slices
+
+### https://wuyin.io/2018/03/07/50-shades-of-golang-traps-gotchas-mistakes/

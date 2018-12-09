@@ -304,3 +304,13 @@ n = n >>> 0 (无符号右移)
 1. null, undefined, 字符串 都是 0 
 2. 对象报语法错误
 3. 负数会先被忽略符号位，再移动0位，例如 -1 >>> 0 === 4294967295
+
+### https://medium.freecodecamp.org/class-vs-factory-function-exploring-the-way-forward-73258b6a8d15
+class vs factory
+
+
+### [max integer](https://stackoverflow.com/questions/2802957/number-of-bits-in-javascript-numbers/2803010#280301)
+
+### 模块
+https://segmentfault.com/a/1190000012419990
+https://segmentfault.com/a/1190000012386576

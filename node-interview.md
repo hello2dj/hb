@@ -10,7 +10,7 @@ function changeStuff(a, b, c)
   a = a * 10;
   b.item = "changed";
   c = {item: "changed"};
-}
+m }
 
 var num = 10;
 var obj1 = {item: "unchanged"};

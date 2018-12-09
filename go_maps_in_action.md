@@ -267,3 +267,16 @@ func main() {
     fmt.Println(s)    //prints: [{two}]
 }
 ```
+
+### 可以从nil的map中读取所以就有了一下的验证
+```
+// m是个map
+h := handlers.m[c]
+if h == nil {
+    if handlers.m == nil {
+        handlers.m = make(map[chan<- os.Signal]*handler)
+    }
+    h = new(handler)
+    handlers.m[c] = h
+}
+```

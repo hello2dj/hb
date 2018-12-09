@@ -18,3 +18,6 @@ Write Behind Caching Pattern， 只更新缓存，然后异步刷到数据库中
 
 
 https://yuerblog.cc/2018/06/18/redis-mysql-sync-tips/
+
+
+### cache 文章 https://mp.weixin.qq.com/s/4J3oM1j5hcLq4w4TdSEMPg

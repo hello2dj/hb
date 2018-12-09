@@ -590,7 +590,7 @@ for ... of 是不是更优雅？若是for(let i = 0; i < numberToTake; ++i)更�
 ### 结尾
 我们有时候还是需要去了解一些底层的问题，否则有时候会真的很无能为力，尤其是出错的时候，我们可以使用抽象去减少一些复杂度，但这不代表我们完全不需要去了解抽象。
 
-[reddi讨论](https://www.reddit.com/r/javascript/comments/6sdmk9/closing_iterables_is_a_leaky_abstraction/)
+[reddit讨论](https://www.reddit.com/r/javascript/comments/6sdmk9/closing_iterables_is_a_leaky_abstraction/)
 
 ### 大大的总结一下
 第一次听说抽象漏洞，学习了，非不证自明的东西总是会存在漏洞的。也加深了对迭代器，迭代对象，生成器的理解。其实还有一个更重要的就是，资源的关闭，我们的资源是有限的，一定要有收尾操作。

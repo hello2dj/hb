@@ -41,3 +41,6 @@ jsonp, CORS跨域资源共享, window.name(iframe), nginx 反向代理
 3. 静态资源CDN部署 —— 优化网络请求
 4. 更资源发布路径实现非覆盖式发布 —— 平滑升级
 
+### 图片无限加载 https://mp.weixin.qq.com/s/uc6ZQx0KRZfqJoT_VzUyFg
+
+### 滚动事件 https://www.cnblogs.com/coco1s/p/5499469.html

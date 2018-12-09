@@ -65,7 +65,7 @@ libuv目前使用一个全局的线程池，所有的循环都可以和其交互
 1. [为什么使用thread pool来处理文件I/O](http://blog.libtorrent.org/2012/10/asynchronous-disk-io/)
 2. [关于怎么使用libuv](http://luohaha.github.io/Chinese-uvbook/source/introduction.html)
 
-### libuv 的队列操作
+### libuv 的队列操作(好久没看c的神操作了，在libuv中我又看到了)
 ** 2. 定义基本操作 **
 ```
 #define QUEUE_NEXT(q)       (*(QUEUE **) &((*(q))[0]))
