@@ -81,3 +81,20 @@ func main() {
 	fmt.Println(x);
 }
 ```
+
+### 用函数式编程语言来写快排，不可变数据属性，反而使得思想明了
+```
+quicksort([]) -> [];
+quicksort([Pivot|Rest]) ->
+  {Smaller, Larger} = partition(Pivot, Rest, [], []),
+  quicksort(Smaller) ++ [Pivot] ++ quicksort(Larger).
+
+partition(_, [], Smaller, Larger) -> {Smaller, Larger};
+partition(Pivot, [H|T], Smaller, Larger) ->
+  if H =< Pivot -> partition(Pivot, T, [H|Smaller], Larger);
+     H > Pivot -> partition(Pivot, T, Smaller, [H|Larger])
+  end.
+```
+erlang版的快排，很清晰的告诉了我们快排的核心思想~一次确定一个数字的位置
+
+> 每种语言总是有自己发光的地方，就好比普通的你我

@@ -1,94 +1,86 @@
-### 函数调用拥有最高优先级， 例如如下两句等效
-```
-ghci> succ 9 + max 5 4 + 1   
-16   
-ghci> (succ 9) + (max 5 4) + 1   
-16 
-```
+### 部分函数和全函数
+  * #### 全函数对所有的合法输入都有正确的返回
+  * #### 部分函数对合法输入的子集能够正确处理，其他的则会异常
+    ```
+    -- haskell head就是一个部分函数
+    head [] //就会报错
+    head [1,23] //1
+    ```
+### haskell 建立在currying的基础上，所有的函授其实都是只接受一个参数
 
-### 默认左结合（一堆函数调用时），. 相当于compose函数组合 优先级是9（最高）， $ 组合参数右结合 优先级是0（最低）
-```
-f $ g $ h x = f (g (h x))
-```
+### 类型类很像是接口
 
-### 函数调用时最高的，甚至高于.
-```
-a = (5 +)
-a . a 4 // 报错 <=> a . (a 4)
-(a . a) 4 // ok
-```
-如下替换也是可以的
-```
-a $ a 4
-```
-因为haskell调用默认是左结合，那就而 $ 运算符 是右结合的，为什么因为 a $ a 4这是个中缀写法相当于自带左右括号（a） $ (a 4)
+### 纯函数与不纯的函数加以区分
 
-就是说$相当于把 表达式分为前后两部分带括号的
+### 逻辑与IO分离（逻辑不应当依赖于外部状态，而应当只依赖于输入）
 
-### Functor
-```
-fmap = (a -> b) -> F a -> F b
-<$> = fmap
-```
+### cabal安装的包 必须使用 ghci -package package-name 才能在ghci中引用，若是此发生错误就把包删了重装，安装时出错也是一样，发现那个依赖不对就删掉重新安装
 
-### [有关data 定义的类型解释](http://rwh.readthedocs.io/en/latest/chp/3.html#id16)
-我们可以使用data来定义记录类型
-```
-data BookInfo = Book Int String [String]
-                deriving (Show)
 
-// 我们也可以这么来定义记录类型
-data BookInfo = Book {
-  id:: Int,
-  name:: String,
-  address:: String,
-}
-```
-接下来我们就可以使用属性访问器来访问BookInfo中的内容了
-例如: 
-```
-a = BookInfo {
-      id = 271828
-    , name = "dengjie"
-    , address = "Jane Q. Citizen"
-  }
-id a // 得到的就是271828
-name a // 就是"dengjie"
-address a // Jane Q. Citizen
-```
-可以看到属性访问器就是 data 定义类型时的字段名字
-其实属性访问器就是结构与模式匹配,我们可以这么来写
-```
-id :: BookInfo -> Int
-id (BookInfo id _ _ ) = id
+### 群的概念 google到数学里定义的群(group): G为非空集合，如果在G上定义的二元运算 *，满足
 
-// 其他类似
+（1）封闭性（Closure）：对于任意a，b∈G，有a*b∈G
+（2）结合律（Associativity）：对于任意a，b，c∈G，有（a*b）*c=a*（b*c）
+（3）幺元 （Identity）：存在幺元e，使得对于任意a∈G，e*a=a*e=a
+（4）逆元：对于任意a∈G，存在逆元a^-1，使得a^-1*a=a*a^-1=e
+则称（G，*）是群，简称G是群。
+
+如果仅满足封闭性和结合律，则称G是一个半群（Semigroup）；如果仅满足封闭性、结合律并且有幺元，则称G是一个含幺半群（Monoid）。
+
+### => 之前的括号内是用来想定typeclass的，类型直接在方法中限制就可以了
+```
+pl :: (Show a, Num a) => Tree a -> Tree a
+//typeclass中不但可以直接定义方法也是可以写的
+
+class SemiGroup a where
+  append :: a -> a -> a
+  identiy :: a
+
+instance SemiGroup Integer where
+  append a b = a + b
+  identiy = 0
 ```
 
-### Applicative: Functor
-pure :: a -> A a
-<*> = A (a -> b) -> A a -> A b
+### typeclass list https://wiki.haskell.org/List_instance
 
-### 我们所处理的数据其实都是在上文中的，好比对象的属性等，这些模式可以使我们轻松的操作上下文中的数据
-1. Functor ：使用 fmap 应用一个函数到一个上下文中的值；
-2. Applicative ：使用 <*> 应用一个上下文中的函数到一个上下文中的值；
-3. Monad ：使用 >>= 应用一个接收一个普通值但是返回一个在上下文中的值的函数到一个上下文中的值。
+### haskell 语言规范 
 
-### monad
-return :: a -> m a
-(>>=) :: m a -> (a -> m b) -> m b
-(>>) :: m a -> m b -> m b
-x >> y = x >>= \_ -> y
+### 结合律的并行能力
 
-### [关于state Monad的解释](https://en.wikibooks.org/wiki/Haskell/Understanding_monads/State)
-let 定义变量 in 变量使用
-let a = 12 in print a
+### Functor & Applicative & Monoid & Monad
+```
+--Functor typeclass
+class Functor f where
+  fmap :: (a -> b) -> f a -> f b
+ 
+  (<$) :: a        -> f b -> f a
+  (<$) = fmap . const
 
-### [关于monad transformer的理解](https://zh.wikibooks.org/zh-hans/Haskell/Monad_transformers)
+--Applicative typeclass
+class (Functor f) => Applicative f where  
+    pure :: a -> f a  
+    (<*>) :: f (a -> b) -> f a -> f b
 
-### 在我看来monad就是处理上下文中内容的一种模式，或者说是一套规范的处理流程。
+--Monoid typeclass
+class Applicative m => Monad m where
+  return :: a -> m a
+  (>>=)  :: m a -> (a -> m b) -> m b
+  (>>)   :: m a -> m b -> m b
+  m >> n = m >>= \_ -> n
+ 
+  fail   :: String -> m a 
+--
+--
 
-### 在haskell lift是提升的意思
+```
 
-### [关于类型类](http://rwh.readthedocs.io/en/latest/chp/6.html)
+### https://stackoverflow.com/questions/29154049/how-to-understand-type-inference-of-ap-liftm2-id
+从这篇文章中我们可以看到haskell的函数签名时可以任意组合的
+还有这份对(a -> b)的Functor的实现 
 
+也是类似的， 从上面的代码中我们可以看到mappend的签名是 mappend :: a -> a -> a
+但我们可以看到当为(a -> b)这个Monoid实现时 mappend的实现是
+mappend f g x = f x `mappend` g x， 问题来了为什么多了一个参数x呢，很简单，我们看到mappend的签名是类型变量，也就是说a可以使任意变量，是要变量时类型类Monoid的实现即可， 那我们把（a -> b）带入到签名即可看到 mappend的签名就成了， (a -> b) -> (a -> b) -> (a -> b), 当我们把最后一个括号去掉就可以看到签名变成了 (a -> b) -> (a -> b) -> a -> b,很显然现在就明显了，我们可以把mappend的签名看成需要三个参数了，最后返回b
+
+
+You've reminded me again that a -> b -> c is actually a -> (b -> c), i.e. the type inference is right associative

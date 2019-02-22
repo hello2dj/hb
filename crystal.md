@@ -315,7 +315,7 @@ end
 
 ### method_missing 宏相当于proxy
 
-### ensure 和 return  ||| 类似于golang的return和defer 都是return 现将返回值写上，然后ensure清理
+### ensure 和 return  || 类似于golang的return和defer 都是return 现将返回值写上，然后ensure清理
 ```
 cc = ->() {
   mu.lock
@@ -329,3 +329,7 @@ cc = ->() {
   end
 }
 ```
+
+
+### 抽象类的抽象方法必须实现, 抽象方法只能在抽象类中实现，且抽象方法不能实例化
+### module中抽象方法可以不实现，但调用会报错

@@ -4,6 +4,7 @@ date: 2018-01-03 20:14:31
 tag:
 - rust-lang
 ---
+### rust 默认语义是move(也是通过按字节copy实现的)
 
 ### rust中的变量是 某块内存的名字， mut 标志的是名字对应的内存区域是否可变
 ```
@@ -749,4 +750,4 @@ a + b + (c + d[0]) + e
 a, +, b, +, (c + d[0]), +, e
 > 怎么推断的呢？ $(($t:tt)*) 有多少个$t就有多少个 single token tree
 
-### [rust 中的vector之一种值]
+### [rust 中的vector之一种值] // 待理解

@@ -42,3 +42,32 @@ https://www.scienjus.com/database-sharding-review/
 ### mysql 优化 https://blog.devopszen.com/mysql
 
 ### mysql int(11)值溢出，最大值为2147483647;在超过的就会截断为2147483647；
+
+### http://www.ywnds.com/?p=9337 关于show processlist
+
+### http://www.ywnds.com/?cat=31
+
+### https://blog.csdn.net/fdipzone/article/details/80144166
+查看所有数据库容量大小
+```
+select 
+table_schema as '数据库',
+sum(table_rows) as '记录数',
+sum(truncate(data_length/1024/1024, 2)) as '数据容量(MB)',
+sum(truncate(index_length/1024/1024, 2)) as '索引容量(MB)'
+from information_schema.tables
+group by table_schema
+order by sum(data_length) desc, sum(index_length) desc;
+```
+
+查看所有数据库各表容量大小
+```
+select 
+table_schema as '数据库',
+table_name as '表名',
+table_rows as '记录数',
+truncate(data_length/1024/1024, 2) as '数据容量(MB)',
+truncate(index_length/1024/1024, 2) as '索引容量(MB)'
+from information_schema.tables
+order by data_length desc, index_length desc;
+```

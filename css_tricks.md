@@ -911,6 +911,8 @@ label 的for属性后面跟着input的id,就可以点击label，来触发input�
 
 ### flex 有个order属性，正值，flex会按照order大小进行布局，而非是给定的顺序
 ### flex nowrap 会按照父元素的宽度平均分给flex-item，flex-item可以给定宽度，但是宽度最大不能超过 pw/sn(parent width / son number)
+### flex的子元素可以赋值高度，若不赋予高度则是flex-container的高度（及时是inline元素也一样）
+
 https://marina-ferreira.github.io/projects/js/memory-game/
 
 ### fixed布局带有input的坑(http://efe.baidu.com/blog/mobile-fixed-layout/)
@@ -918,3 +920,7 @@ https://marina-ferreira.github.io/projects/js/memory-game/
 ### Element.scrollTop 属性可以获取或设置一个元素的内容垂直滚动的像素数。
 
 一个元素的 scrollTop 值是这个元素的顶部到它的最顶部可见内容（的顶部）的距离的度量。当一个元素的内容没有产生垂直方向的滚动条，那么它的 scrollTop 值为0。
+
+### https://www.w3.org/TR/css-flexbox-1/#item-margins flex items没有margin-collapse
+
+### http://eux.baidu.com/blog/fe/link-preload-%E6%A0%87%E7%AD%BE preload

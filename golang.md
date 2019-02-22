@@ -1129,3 +1129,23 @@ var _ HelloServiceInterface = (*HelloServiceClient)(nil) // 确保 HelloServiceC
 ### copy内置的copy https://golang.org/ref/spec#Appending_and_copying_slices
 
 ### https://wuyin.io/2018/03/07/50-shades-of-golang-traps-gotchas-mistakes/
+
+### method的赋值会依然带着接收者，即 a.cMethod() === 'd := a.cMethod \n d()' 怎么样炫酷吧，方法的赋值其实也是带着接收者的
+```
+package main
+
+type A struct {
+	a int
+}
+
+func (a *A)set(c int) {
+	a.a=c
+}
+
+func main() {
+	a := A{123}
+	c := a.set
+	a.set(123)
+	c(0)
+}
+```

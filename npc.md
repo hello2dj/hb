@@ -1,0 +1,3 @@
+p问题，可以在多项式时间内解决的问题，polynomial problem。
+np 问题，可以在多项式的时间里验证一个解的问题，non-deterministic polynomial
+npc问题，是NP的一个子集，且其中每一个问题均能由NP中的任何问题在多项式时间内转化而成，np complete

@@ -5,3 +5,8 @@
 
 ### 服务假死
 http://blog.halfblood.cn/2014/02/26/process-apparent-death
+
+
+### https://www.yuque.com/egg/nodejs/vnmwzu  gcore 服务假死
+
+### https://www.yuque.com/egg/nodejs/gr46go gc

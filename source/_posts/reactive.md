@@ -9,7 +9,7 @@ tag:
 我又要先上图了：
 ![](http://img.blog.csdn.net/20160311112349604)
 
-抱歉这次没有原文了！！！！
+
 
 <!-- more -->
 
@@ -26,6 +26,8 @@ tag:
 那么push系统呢？是有producer来决定什么时候产生数据给Consumer的，而consumer是不关心什么时候拿到数据（典型的订阅模式啊）。
 其实前端后端是pull，但我们也在经常性的使用push，那就是promise，当你调用promise后你是不知道什么时候才会拿得到数据的。可是promise是单值的push系统。
 而rxjs带来了一个新的push系统，多值可取消的push系统（但rxjs不像promise那样全是异步的，rxjs可异步可同步）。
+
+> push 也有push的弊端，那就是backpressure问题
 
 ### 我们再来看看cyclejs里的介绍
 ![](https://cycle.js.org/img/passive-foo-bar.svg)
@@ -84,3 +86,5 @@ Foo.addOnNetworkRequestListener(() => { // 事件一来我大CCTV就可以主动
 1. [The introduction to Reactive Programming you've been missing](https://github.com/hehonghui/android-tech-frontier/tree/master/androidweekly/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E9%94%99%E8%BF%87%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B)
 2. [vedio](https://egghead.io/lessons/rxjs-understand-reactive-programming-using-rxjs)
 3. [rxjs](http://reactivex.io/rxjs/manual/overview.html#pull-versus-push)
+4. [响应式宣言](https://www.reactivemanifesto.org/zh-CN)
+> 从响应式宣言中我们可以看到，不仅编程是可以响应式的，整个系统都应该是响应式的。
